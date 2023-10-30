@@ -1,10 +1,8 @@
 package org.example;
-import org.example.herois.Guerreiro;
-import org.example.herois.Paladino;
+import org.example.herois.*;
 import org.example.relatorios.ProgramaRelatorios;
 import org.example.util.FabricaDeMonstros;
 import org.example.util.Personagem;
-import org.example.herois.Barbaro;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -24,7 +22,7 @@ public class App
         try {
             System.out.println("Digite o nome de seu personagem: ");
             String nome = input.nextLine();
-            System.out.println("Digite a classe de herói que gostaria de utilizar: Barbaro, Guerreiro ou Paladino");
+            System.out.println("Digite a classe de herói que gostaria de utilizar: Barbaro, Guerreiro, Paladino, Arqueiro ou Assassino");
             String classeEscolhida = input.nextLine().toLowerCase();
             heroiEscolhido = classeEscolhida;
 
@@ -39,6 +37,14 @@ public class App
 
                 case "guerreiro":
                     jogador = new Guerreiro(nome);
+                    break;
+
+                case "assassino":
+                    jogador = new Assassino(nome);
+                    break;
+
+                case "arqueiro":
+                    jogador = new Arqueiro(nome);
                     break;
 
                 default:
