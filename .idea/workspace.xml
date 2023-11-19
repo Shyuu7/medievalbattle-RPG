@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f77bb2b-eeba-4c67-9d10-b48084f02b86" name="Changes" comment="Projeto básico no formato Maven" />
+    <list default="true" id="6f77bb2b-eeba-4c67-9d10-b48084f02b86" name="Changes" comment="Melhorado app com arquivos de Log">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +29,13 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master" />
+      </list>
+    </option>
   </component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -127,7 +138,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Projeto básico no formato Maven" />
-    <option name="LAST_COMMIT_MESSAGE" value="Projeto básico no formato Maven" />
+    <MESSAGE value="Melhorado app com arquivos de Log" />
+    <option name="LAST_COMMIT_MESSAGE" value="Melhorado app com arquivos de Log" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
