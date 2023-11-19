@@ -1,4 +1,7 @@
 package org.example;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.example.herois.*;
 import org.example.relatorios.ProgramaRelatorios;
 import org.example.util.FabricaDeMonstros;
@@ -10,11 +13,12 @@ import java.io.File;
 import java.util.Date;
 
 
-public class App 
-{
+public class App {
+    private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        Personagem jogador = null;
+        Personagem jogador;
         Date dataAtual = new Date();
         String heroiEscolhido = "";
 
@@ -24,7 +28,7 @@ public class App
             String nome = input.nextLine();
             System.out.println("Digite a classe de herói que gostaria de utilizar: Barbaro, Guerreiro, Paladino, Arqueiro ou Assassino");
             String classeEscolhida = input.nextLine().toLowerCase();
-            heroiEscolhido = classeEscolhida;
+
 
             switch (classeEscolhida) {
                 case "paladino":
@@ -51,21 +55,20 @@ public class App
                     throw new InputMismatchException();
             }
 
-            System.out.println("Criado o " + classeEscolhida + " " + jogador.getNome());
-            System.out.println("Seus atributos: " + jogador.getPontosDeVida() + " pontos de vida / "
+            LOGGER.info("Criado o " + classeEscolhida + " " + jogador.getNome());
+            LOGGER.info("Atributos do player: " + jogador.getPontosDeVida() + " pontos de vida / "
                     + jogador.getForca() + " força / " + jogador.getDefesa() + " defesa / " + jogador.getAgilidade()
                     + " agilidade / " + jogador.getFatorDeDano() + " Fator de Dano.");
 
         } catch (InputMismatchException e) {
-            System.out.println("Classe inválida. Favor escolher uma das classes apresentadas.");
+            LOGGER.error("Classe inválida. Player não escolheu uma das classes apresentadas.");
             return;
         } finally {
             input.close();
         }
 
         Personagem monstroInimigo = FabricaDeMonstros.gerarMonstroAleatorio();
-        System.out.println("Você enfrentará um monstro do tipo: " + monstroInimigo.getNome());
-        System.out.println("==========================================");
+        LOGGER.info("Monstro inimigo do tipo : " + monstroInimigo.getNome());
 
         boolean jogadorVivo = true;
         boolean monstroVivo = true;
@@ -77,9 +80,9 @@ public class App
         File tempDir = new File(pastaTemp);
         if (!tempDir.exists()) {
             if (tempDir.mkdirs()) {
-                System.out.println("Diretório para salvar relatórios das partidas criados com sucesso.");
+                LOGGER.debug("Diretório para salvar relatórios das partidas criados com sucesso.");
             } else {
-                System.out.println("Erro ao criar a pasta 'temp'.");
+                LOGGER.error("Erro ao criar a pasta 'temp'.");
                 return;
             }
         }
@@ -90,72 +93,64 @@ public class App
         do {
             int iniciativaJogador = jogador.calcularIniciativa();
             int iniciativaMonstro = monstroInimigo.calcularIniciativa();
-            System.out.println(
-                    "\nCalculando iniciativas: Jogador - " + iniciativaJogador + " / Inimigo - " + iniciativaMonstro);
-            System.out.println("==========================================");
+            LOGGER.info("\nCalculando iniciativas: Jogador - " + iniciativaJogador + " / Inimigo - " + iniciativaMonstro);
 
             while (iniciativaJogador == iniciativaMonstro) {
                 iniciativaJogador = jogador.calcularIniciativa();
                 iniciativaMonstro = monstroInimigo.calcularIniciativa();
-                System.out.println(
-                        "\nRecalculando iniciativas: Jogador - " + iniciativaJogador + " / Inimigo "
-                                + iniciativaMonstro);
-                System.out.println("==========================================");
+                LOGGER.info("\nRecalculando iniciativas: Jogador - " + iniciativaJogador + " / Inimigo "
+                        + iniciativaMonstro);
             }
 
             if (iniciativaJogador > iniciativaMonstro) {
-                System.out.println("O jogador iniciará o ataque!");
-                System.out.println();
+                LOGGER.info("O jogador iniciará o ataque!");
                 int ataqueJogador = jogador.calcularAtaque();
                 int defesaMonstro = monstroInimigo.calcularDefesa();
-                System.out.println("Fator de ataque do jogador: " + ataqueJogador);
-                System.out.println("Fator de defesa do monstro: " + defesaMonstro);
-                System.out.println("==========================================");
+                LOGGER.info("Fator de ataque do jogador: " + ataqueJogador);
+                LOGGER.info("Fator de defesa do monstro: " + defesaMonstro);
 
                 if (ataqueJogador > defesaMonstro) {
-                    System.out.println("O jogador ganhou o embate. Calculando dano.");
+                    LOGGER.info("O jogador ganhou o embate. Calculando dano.");
                     int danoJogador = jogador.calcularDano();
                     vidaMonstro = vidaMonstro - danoJogador;
-                    System.out.println("\nO jogador infligiu " + danoJogador + " de dano. Monstro possui " + vidaMonstro
+                    LOGGER.info("\nO jogador infligiu " + danoJogador + " de dano. Monstro possui " + vidaMonstro
                             + " pontos de vida restantes.");
 
                     if (vidaMonstro <= 0) {
                         monstroVivo = false;
-                        System.out.println("\nO monstro foi derrotado! Vitória do herói!");
+                        LOGGER.info("\nO monstro foi derrotado! Vitória do herói!");
                         ProgramaRelatorios.salvarDadosDaPartida(arquivoCSV, dataAtual, heroiEscolhido, "GANHOU", monstroInimigo.getNome(), rodadas);
                     }
                 } else {
-                    System.out.println("O monstro conseguiu se defender! O jogador não infligiu nenhum dano.");
+                    LOGGER.debug("O monstro conseguiu se defender! O jogador não infligiu nenhum dano.");
                 }
 
             } else {
-                System.out.println("O monstro iniciará o ataque!");
-                System.out.println();
+                LOGGER.info("O monstro iniciará o ataque!");
                 int ataqueMonstro = monstroInimigo.calcularAtaque();
                 int defesaJogador = jogador.calcularDefesa();
-                System.out.println("Fator de ataque do monstro: " + ataqueMonstro);
-                System.out.println("Fator de defesa do jogador: " + defesaJogador);
-                System.out.println("==========================================");
+                LOGGER.info("Fator de ataque do monstro: " + ataqueMonstro);
+                LOGGER.info("Fator de defesa do jogador: " + defesaJogador);
 
                 if (ataqueMonstro > defesaJogador) {
-                    System.out.println("O monstro ganhou o embate. Calculando dano.");
+                    LOGGER.info("O monstro ganhou o embate. Calculando dano.");
                     int danoMonstro = monstroInimigo.calcularDano();
                     vidaJogador = vidaJogador - danoMonstro;
-                    System.out.println("\nO monstro infligiu " + danoMonstro + " de dano. Jogador possui " + vidaJogador
+                    LOGGER.debug("\nO monstro infligiu " + danoMonstro + " de dano. Jogador possui " + vidaJogador
                             + " pontos de vida restantes.");
 
                     if (vidaJogador <= 0) {
                         jogadorVivo = false;
-                        System.out.println("\nO jogador foi derrotado! Vitória do monstro!");
+                        LOGGER.info("\nO jogador foi derrotado! Vitória do monstro!");
                         ProgramaRelatorios.salvarDadosDaPartida(arquivoCSV, dataAtual, heroiEscolhido, "PERDEU", monstroInimigo.getNome(), rodadas);
                     }
                 } else {
-                    System.out.println("O jogador conseguiu se defender! O monstro não infligiu nenhum dano.");
+                    LOGGER.debug("O jogador conseguiu se defender! O monstro não infligiu nenhum dano.");
                 }
             }
             rodadas++;
         } while (jogadorVivo && monstroVivo);
 
-        System.out.println("O jogo durou " + rodadas + " rodadas.");
+        LOGGER.info("O jogo durou " + rodadas + " rodadas.");
     }
 }
