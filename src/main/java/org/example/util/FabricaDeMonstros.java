@@ -18,15 +18,16 @@ public class FabricaDeMonstros {
         int randomIndex = random.nextInt(MONSTROS.length);
         String tipoMonstroAleatorio = MONSTROS[randomIndex];
 
-        if ("Kobold".equals(tipoMonstroAleatorio)) {
-            return new Kobold("Kobold");
-        } else if ("Orc".equals(tipoMonstroAleatorio)) {
-            return new Orc("Orc");
-        } else if ("MortoVivo".equals(tipoMonstroAleatorio)) {
-            return new MortoVivo("Morto Vivo");
-        } else {
-            throw new IllegalArgumentException("Não foi possível criar este monstro.");
+        switch (tipoMonstroAleatorio) {
+            case "Kobold":
+                return new Kobold("Kobold");
+            case "Orc":
+                return new Orc("Orc");
+            case "MortoVivo":
+                return new MortoVivo("Morto Vivo");
+            default:
+                throw new IllegalArgumentException("Não foi possível criar este monstro.");
         }
     }
-};
+}
 

@@ -2,6 +2,7 @@ package org.example.util;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.exceptions.fatorDeDanoException;
 
 @Getter@Setter
 public abstract class Personagem implements iPersonagem {
@@ -36,6 +37,12 @@ public abstract class Personagem implements iPersonagem {
     public int calcularDefesa() {
         Dado dadoDefesa = new Dado(10);
         return dadoDefesa.jogarDado() + getAgilidade() + getDefesa();
+    }
+
+    public void setFatorDeDano(int fatorDeDano) {
+        if (fatorDeDano > 0) {
+            this.fatorDeDano = fatorDeDano;
+        } else throw new fatorDeDanoException("Fator de dano inválido! Necessário valor maior que zero");
     }
 
     public int calcularDano() {
