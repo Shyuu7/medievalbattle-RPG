@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e19eba2-76bd-4e15-9480-86e3a34ba704" name="Changes" comment="Inclusos testes de verificação e adicionado plugin surefire para rodá-los">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/exceptions/fatorDeDanoException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/DadoTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/PersonagemTests.java" afterDir="false" />
+    <list default="true" id="6e19eba2-76bd-4e15-9480-86e3a34ba704" name="Changes" comment="Inclusos testes de verificação e adicionado plugin surefire para realizar os testes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/monstros/Banshee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/monstros/Slime.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/util/FabricaDeMonstros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/util/FabricaDeMonstros.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/util/Personagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/util/Personagem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +23,12 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--follow-tags" />
+        <option name="title" value="Current Branch" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -179,9 +181,17 @@
       <option name="presentableId" value="Default" />
       <updated>1700419296696</updated>
       <workItem from="1700419311557" duration="14827000" />
-      <workItem from="1700490966058" duration="2284000" />
+      <workItem from="1700490966058" duration="3009000" />
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Inclusos testes de verificação e adicionado plugin surefire para realizar os testes">
+      <option name="closed" value="true" />
+      <created>1700493392439</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700493392439</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +223,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Resolvido conflito de versão do projeto" />
     <MESSAGE value="Inclusos testes de verificação e adicionado plugin surefire para rodá-los" />
-    <option name="LAST_COMMIT_MESSAGE" value="Inclusos testes de verificação e adicionado plugin surefire para rodá-los" />
+    <MESSAGE value="Inclusos testes de verificação e adicionado plugin surefire para realizar os testes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inclusos testes de verificação e adicionado plugin surefire para realizar os testes" />
   </component>
 </project>

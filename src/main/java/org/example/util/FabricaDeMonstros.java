@@ -1,8 +1,6 @@
 package org.example.util;
 
-import org.example.monstros.Kobold;
-import org.example.monstros.MortoVivo;
-import org.example.monstros.Orc;
+import org.example.monstros.*;
 
 import java.util.Random;
 
@@ -10,7 +8,9 @@ public class FabricaDeMonstros {
     private static final String[] MONSTROS = {
             "Kobold",
             "Orc",
-            "MortoVivo"
+            "MortoVivo",
+            "Banshee",
+            "Slime"
     };
 
     public static Personagem gerarMonstroAleatorio() throws IllegalArgumentException {
@@ -25,6 +25,11 @@ public class FabricaDeMonstros {
                 return new Orc("Orc");
             case "MortoVivo":
                 return new MortoVivo("Morto Vivo");
+            case "Banshee":
+                return new Banshee("Banshee");
+            case "Slime":
+                return new Slime("Slime");
+
             default:
                 throw new IllegalArgumentException("Não foi possível criar este monstro.");
         }
